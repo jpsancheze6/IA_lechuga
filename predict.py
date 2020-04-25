@@ -4,26 +4,25 @@ import tensorflow as tf
 import numpy as np
 import os
 
-longitud, altura = 100, 100
-modelo_clasificacion = os.path.relpath('data/modelo_clasificacion/modelo_clasificacion.h5')
-pesos_clasificacion = os.path.relpath('data/modelo_clasificacion/pesos_clasificacion.h5')
-
-modelo_lechuga = os.path.relpath('data/modelo_lechuga/modelo.h5')
-pesos_lechuga = os.path.relpath('data/modelo_lechuga/pesos.h5')
-
-modelo_plaga = os.path.relpath('data/modelo_plagas/modelo_plagas.h5')
-pesos_plaga = os.path.relpath('data/modelo_plagas/pesos_plagas.h5')
-
-red_clasificacion = tf.keras.models.load_model(modelo_clasificacion)
-red_clasificacion.load_weights(pesos_clasificacion)
-
-red_lechuga = tf.keras.models.load_model(modelo_lechuga)        # Carga el modelo que se obtuvo previamente
-red_lechuga.load_weights(pesos_lechuga)                         # Carga los pesos que se encontraron en el entrenamiento
-
-red_plagas = tf.keras.models.load_model(modelo_plaga)
-red_plagas.load_weights(pesos_plaga)
-
 def predict(file):
+    longitud, altura = 100, 100
+    modelo_clasificacion = os.path.relpath('data/modelo_clasificacion/modelo_clasificacion.h5')
+    pesos_clasificacion = os.path.relpath('data/modelo_clasificacion/pesos_clasificacion.h5')
+
+    modelo_lechuga = os.path.relpath('data/modelo_lechuga/modelo.h5')
+    pesos_lechuga = os.path.relpath('data/modelo_lechuga/pesos.h5')
+
+    modelo_plaga = os.path.relpath('data/modelo_plagas/modelo_plagas.h5')
+    pesos_plaga = os.path.relpath('data/modelo_plagas/pesos_plagas.h5')
+
+    red_clasificacion = tf.keras.models.load_model(modelo_clasificacion)
+    red_clasificacion.load_weights(pesos_clasificacion)
+
+    red_lechuga = tf.keras.models.load_model(modelo_lechuga)        # Carga el modelo que se obtuvo previamente
+    red_lechuga.load_weights(pesos_lechuga)                         # Carga los pesos que se encontraron en el entrenamiento
+
+    red_plagas = tf.keras.models.load_model(modelo_plaga)
+    red_plagas.load_weights(pesos_plaga)
     os.system('clear')
     x = keras.preprocessing.image.load_img(file, target_size = (longitud, altura))
     x = keras.preprocessing.image.img_to_array(x)
