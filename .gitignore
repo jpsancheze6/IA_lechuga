@@ -1,3 +1,6 @@
+# Carpetas de los modelos
+data/modelo_*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
