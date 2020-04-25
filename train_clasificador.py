@@ -21,11 +21,11 @@ data_validacion = os.path.relpath('data/validacion_clasificacion')           # R
     Parámetros de la red neuronal
 """
 
-epocas = 5                                     # Cantidad de épocas que va a evaluar la red neuronal
+epocas = 15                                     # Cantidad de épocas que va a evaluar la red neuronal
 altura, longitud = 100, 100                     # Tamaño de las imágenes que van a evaluar
 batch_size = 32                                 # Número de imágenes a procesar por cada época
-pasos = 1000                                    # Número de veces a procesar las imágenes en cada época
-pasos_validacion = 500                          # Por cada época valida que la red esté funcionando bien
+pasos = 100                                     # Número de veces a procesar las imágenes en cada época
+pasos_validacion = 50                           # Por cada época valida que la red esté funcionando bien
 filtrosConv1 = 32                               # Profunidad después de la convolución 1
 filtrosConv2 = 64                               # Profunidad después de la convolución 2
 size_filtro1 = (3, 3)                           # Filtro convolución 1
