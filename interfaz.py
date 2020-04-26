@@ -11,7 +11,7 @@ import os
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Analizador de Lechugas")
-        Dialog.resize(400, 300)
+        Dialog.resize(400, 280)
 
         self.ruta = ''
 
@@ -19,6 +19,11 @@ class Ui_Dialog(object):
         self.lblFoto.setGeometry(QtCore.QRect(10, 10, 150, 150))
         self.lblFoto.setText("")
         self.lblFoto.setObjectName("lblFoto")
+
+        self.lblDesc = QtWidgets.QLabel(Dialog)
+        self.lblDesc.setGeometry(QtCore.QRect(10, 170, 380, 100))
+        self.lblDesc.setText("")
+        self.lblDesc.setObjectName("lblDesc")
 
         self.btnElegir = QtWidgets.QPushButton(Dialog)
         self.btnElegir.setGeometry(QtCore.QRect(230, 20, 141, 23))
@@ -51,11 +56,12 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Evaluador de fases lechuga"))
         self.btnElegir.setText(_translate("Dialog", "Seleccionar imagen"))
         self.btnEvaluar.setText(_translate("Dialog", "Evaluar foto"))
 
     def predict(self, file):
+        texto = 'La planta presenta las siguientes características:\n\n'
         longitud, altura = 100, 100
         modelo_clasificacion = os.path.relpath('data/modelo_clasificacion/modelo_clasificacion.h5')
         pesos_clasificacion = os.path.relpath('data/modelo_clasificacion/pesos_clasificacion.h5')
@@ -88,41 +94,52 @@ class Ui_Dialog(object):
             arreglo_1 = red_lechuga.predict(x)
             resultado_1 = arreglo_1[0]
             respuesta_1 = np.argmax(resultado_1)
+            texto = texto + 'Si es lechuga.\n'
             if respuesta_1 == 0:
                 print('Fase 1')
 
+                texto = texto + 'Fase 1.\n'
                 arreglo_2 = red_plagas.predict(x)
                 resultado_2 = arreglo_2[0]
                 respuesta_2 = np.argmax(resultado_2)
                 if respuesta_2 == 0:
                     print('La planta presenta plagas')
+                    texto = texto + 'Presenta plagas.\n'
                 elif respuesta_2 == 1:
                     print('La planta se encuenta en buen estado')
-
+                    texto = texto + 'Se encuentra en buen estado.\n'
             elif respuesta_1 == 1:
                 print('Fase 2')
 
+                texto = texto + 'Fase 2.\n'
                 arreglo_2 = red_plagas.predict(x)
                 resultado_2 = arreglo_2[0]
                 respuesta_2 = np.argmax(resultado_2)
                 if respuesta_2 == 0:
                     print('La planta presenta plagas')
+                    texto = texto + 'Presenta plagas.\n'
                 elif respuesta_2 == 1:
                     print('La planta se encuenta en buen estado')
+                    texto = texto + 'Se encuentra en buen estado.\n'
 
             elif respuesta_1 == 2:
                 print('Fase 3')
 
+                texto = texto + 'Fase 3.\n'
                 arreglo_2 = red_plagas.predict(x)
                 resultado_2 = arreglo_2[0]
                 respuesta_2 = np.argmax(resultado_2)
                 if respuesta_2 == 0:
                     print('La planta presenta plagas')
+                    texto = texto + 'Presenta plagas.\n'
                 elif respuesta_2 == 1:
                     print('La planta se encuenta en buen estado')
+                    texto = texto + 'Se encuentra en buen estado.\n'
 
         elif respuesta == 1:
             print('No es lechuga')
+            texto = texto + 'No es lechuga.\n'
+        self.lblDesc.setText(texto)
         return respuesta
 
 if __name__ == "__main__":
