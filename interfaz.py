@@ -61,6 +61,7 @@ class Ui_Dialog(object):
         self.btnEvaluar.setText(_translate("Dialog", "Evaluar foto"))
 
     def predict(self, file):
+        texto = ''
         texto = 'La planta presenta las siguientes características:\n\n'
         longitud, altura = 100, 100
         modelo_clasificacion = os.path.relpath('data/modelo_clasificacion/modelo_clasificacion.h5')
