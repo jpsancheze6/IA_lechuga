@@ -15,6 +15,12 @@ def predict(file):
     modelo_plaga = os.path.relpath('data/modelo_plagas/modelo_plagas.h5')
     pesos_plaga = os.path.relpath('data/modelo_plagas/pesos_plagas.h5')
 
+    modelo_edad = os.path.relpath('data/modelo_fecha/modelo_clasificacion.h5')
+    pesos_edad = os.path.relpath('data/modelo_fecha/pesos_clasificacion.h5')
+
+    red_fecha = tf.keras.models.load_model(modelo_edad)
+    red_fecha.load_weights(pesos_edad)
+
     red_clasificacion = tf.keras.models.load_model(modelo_clasificacion)
     red_clasificacion.load_weights(pesos_clasificacion)
 

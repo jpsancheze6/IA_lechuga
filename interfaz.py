@@ -73,6 +73,12 @@ class Ui_Dialog(object):
         modelo_plaga = os.path.relpath('data/modelo_plagas/modelo_plagas.h5')
         pesos_plaga = os.path.relpath('data/modelo_plagas/pesos_plagas.h5')
 
+        modelo_edad = os.path.relpath('data/modelo_fecha/modelo.h5')
+        pesos_edad = os.path.relpath('data/modelo_fecha/pesos.h5')
+
+        red_fecha = tf.keras.models.load_model(modelo_edad)
+        red_fecha.load_weights(pesos_edad)
+
         red_clasificacion = tf.keras.models.load_model(modelo_clasificacion)
         red_clasificacion.load_weights(pesos_clasificacion)
 
@@ -109,6 +115,25 @@ class Ui_Dialog(object):
                 elif respuesta_2 == 1:
                     print('La planta se encuenta en buen estado')
                     texto = texto + 'Se encuentra en buen estado.\n'
+                
+                arreglo_3 = red_fecha.predict(x)
+                resultado_3 = arreglo_3[0]
+                respuesta_3 = np.argmax(resultado_3)
+                if respuesta_3 == 0:
+                    texto = texto + 'Edad de 1 - 10 días.'
+                elif respuesta_3 == 1:
+                    texto = texto + 'Edad de 11 - 27 días.'
+                elif respuesta_3 == 2:
+                    texto = texto + 'Edad de 28 - 43 días.'
+                elif respuesta_3 == 3:
+                    texto = texto + 'Edad de 44 - 60 días.'
+                elif respuesta_3 == 4:
+                    texto = texto + 'Edad de 61 - 76 días.'
+                elif respuesta_3 == 5:
+                    texto = texto + 'Edad de 77 - 81 días.'
+                elif respuesta_3 == 6:
+                    texto = texto + 'Edad de 82 - 86 días.'
+
             elif respuesta_1 == 1:
                 print('Fase 2')
 
@@ -122,6 +147,24 @@ class Ui_Dialog(object):
                 elif respuesta_2 == 1:
                     print('La planta se encuenta en buen estado')
                     texto = texto + 'Se encuentra en buen estado.\n'
+                
+                arreglo_3 = red_fecha.predict(x)
+                resultado_3 = arreglo_3[0]
+                respuesta_3 = np.argmax(resultado_3)
+                if respuesta_3 == 0:
+                    texto = texto + 'Edad de 1 - 10 días.'
+                elif respuesta_3 == 1:
+                    texto = texto + 'Edad de 11 - 27 días.'
+                elif respuesta_3 == 2:
+                    texto = texto + 'Edad de 28 - 43 días.'
+                elif respuesta_3 == 3:
+                    texto = texto + 'Edad de 44 - 60 días.'
+                elif respuesta_3 == 4:
+                    texto = texto + 'Edad de 61 - 76 días.'
+                elif respuesta_3 == 5:
+                    texto = texto + 'Edad de 77 - 81 días.'
+                elif respuesta_3 == 6:
+                    texto = texto + 'Edad de 82 - 86 días.'
 
             elif respuesta_1 == 2:
                 print('Fase 3')
@@ -136,6 +179,24 @@ class Ui_Dialog(object):
                 elif respuesta_2 == 1:
                     print('La planta se encuenta en buen estado')
                     texto = texto + 'Se encuentra en buen estado.\n'
+                
+                arreglo_3 = red_fecha.predict(x)
+                resultado_3 = arreglo_3[0]
+                respuesta_3 = np.argmax(resultado_3)
+                if respuesta_3 == 0:
+                    texto = texto + 'Edad de 1 - 10 días.'
+                elif respuesta_3 == 1:
+                    texto = texto + 'Edad de 11 - 27 días.'
+                elif respuesta_3 == 2:
+                    texto = texto + 'Edad de 28 - 43 días.'
+                elif respuesta_3 == 3:
+                    texto = texto + 'Edad de 44 - 60 días.'
+                elif respuesta_3 == 4:
+                    texto = texto + 'Edad de 61 - 76 días.'
+                elif respuesta_3 == 5:
+                    texto = texto + 'Edad de 77 - 81 días.'
+                elif respuesta_3 == 6:
+                    texto = texto + 'Edad de 82 - 86 días.'
 
         elif respuesta == 1:
             print('No es lechuga')
