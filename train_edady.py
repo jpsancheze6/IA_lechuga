@@ -21,7 +21,7 @@ data_validacion = os.path.relpath('data/validacion_fecha')           # Ruta de l
     Parámetros de la red neuronal
 """
 
-epocas = 15                                     # Cantidad de épocas que va a evaluar la red neuronal
+epocas = 25                                     # Cantidad de épocas que va a evaluar la red neuronal
 altura, longitud = 100, 100                     # Tamaño de las imágenes que van a evaluar
 batch_size = 32                                 # Número de imágenes a procesar por cada época
 pasos = 100                                     # Número de veces a procesar las imágenes en cada época
